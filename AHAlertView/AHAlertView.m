@@ -1184,4 +1184,71 @@ typedef void (^AHAnimationBlock)();
 	return [image resizableImageWithCapInsets:UIEdgeInsetsMake(capHeight, cornerRadius, capHeight, cornerRadius)];
 }
 
+#pragma mark - uiapperance setters
+
+- (void)setButtonHorizontalSpacing:(CGFloat)buttonHorizontalSpacing {
+    _buttonHorizontalSpacing = buttonHorizontalSpacing;
+    [self setNeedsLayout];
+}
+
+- (void)setButtonBottomMargin:(CGFloat)buttonBottomMargin {
+    _buttonBottomMargin = buttonBottomMargin;
+    [self setNeedsLayout];
+}
+
+- (void)setTextFieldLeading:(CGFloat)textFieldLeading {
+    _textFieldLeading = textFieldLeading;
+    [self setNeedsLayout];
+}
+
+- (void)setTextFieldBottomMargin:(CGFloat)textFieldBottomMargin {
+    _textFieldBottomMargin = textFieldBottomMargin;
+    [self setNeedsLayout];
+}
+
+- (void)setMessageLabelBottomMargin:(CGFloat)messageLabelBottomMargin {
+    _messageLabelBottomMargin = messageLabelBottomMargin;
+    [self setNeedsLayout];
+}
+
+- (void)setTitleLabelBottomMargin:(CGFloat)titleLabelBottomMargin {
+    _titleLabelBottomMargin = titleLabelBottomMargin;
+    [self setNeedsLayout];
+}
+
+- (void)setTextFieldHeight:(CGFloat)textFieldHeight {
+    _textFieldHeight = textFieldHeight;
+    [self setNeedsLayout];
+}
+
+- (void)setButtonHeight:(CGFloat)buttonHeight {
+    _buttonHeight = buttonHeight;
+    [self setNeedsLayout];
+}
+
+- (void)setButtonTitleTextAttributes:(NSDictionary *)buttonTitleTextAttributes {
+    _buttonTitleTextAttributes = [buttonTitleTextAttributes mutableCopy];
+    [self setNeedsLayout];
+}
+
+- (void)setMessageTextAttributes:(NSDictionary *)messageTextAttributes {
+    _messageTextAttributes = [messageTextAttributes mutableCopy];
+    [self setNeedsLayout];
+}
+
+- (void)setTitleTextAttributes:(NSDictionary *)titleTextAttributes {
+    _titleTextAttributes = [titleTextAttributes mutableCopy];
+    [self setNeedsLayout];
+}
+
+- (void)setContentInsets:(UIEdgeInsets)contentInsets {
+    _contentInsets = contentInsets;
+    [self setNeedsLayout];
+}
+
+- (void)setBackgroundImage:(UIImage *)backgroundImage {
+    _backgroundImage = backgroundImage;
+    [self setNeedsLayout];
+}
+
 @end
