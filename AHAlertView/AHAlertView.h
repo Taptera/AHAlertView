@@ -145,4 +145,14 @@ typedef void (^AHAlertViewButtonBlock)();
 - (void)setDestructiveButtonBackgroundImage:(UIImage *)backgroundImage forState:(UIControlState)state UI_APPEARANCE_SELECTOR;
 - (UIImage *)destructiveButtonBackgroundImageForState:(UIControlState)state UI_APPEARANCE_SELECTOR;
 
+// use these properties for fine-grained control of alert layout
+@property(nonatomic, assign) CGFloat buttonHeight UI_APPEARANCE_SELECTOR;
+@property(nonatomic, assign) CGFloat textFieldHeight UI_APPEARANCE_SELECTOR;
+@property(nonatomic, assign) CGFloat titleLabelBottomMargin UI_APPEARANCE_SELECTOR;
+@property(nonatomic, assign) CGFloat messageLabelBottomMargin UI_APPEARANCE_SELECTOR;
+@property(nonatomic, assign) CGFloat textFieldBottomMargin UI_APPEARANCE_SELECTOR;
+@property(nonatomic, assign) CGFloat textFieldLeading UI_APPEARANCE_SELECTOR;
+@property(nonatomic, assign) CGFloat buttonBottomMargin UI_APPEARANCE_SELECTOR;
+@property(nonatomic, assign) CGFloat buttonHorizontalSpacing UI_APPEARANCE_SELECTOR;
+
 @end

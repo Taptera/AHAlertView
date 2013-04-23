@@ -142,6 +142,15 @@ typedef void (^AHAnimationBlock)();
 	[[self appearance] setButtonBackgroundImage:[self normalButtonBackgroundImage] forState:UIControlStateNormal];
 	
 	[[self appearance] setCancelButtonBackgroundImage:[self cancelButtonBackgroundImage] forState:UIControlStateNormal];
+
+    [[self appearance] setButtonHeight:AHAlertViewDefaultButtonHeight];
+    [[self appearance] setTextFieldHeight:AHAlertViewDefaultTextFieldHeight];
+    [[self appearance] setTitleLabelBottomMargin:AHAlertViewTitleLabelBottomMargin];
+    [[self appearance] setMessageLabelBottomMargin:AHAlertViewMessageLabelBottomMargin];
+    [[self appearance] setTextFieldBottomMargin:AHAlertViewTextFieldBottomMargin];
+    [[self appearance] setTextFieldLeading:AHAlertViewTextFieldLeading];
+    [[self appearance] setButtonBottomMargin:AHAlertViewButtonBottomMargin];
+    [[self appearance] setButtonHorizontalSpacing:AHAlertViewButtonHorizontalSpacing];
 }
 
 #pragma mark - Instance life cycle methods
@@ -704,7 +713,7 @@ typedef void (^AHAnimationBlock)();
 									   boundingRect.size.width, titleSize.height);
 
 	// Adjust and return the bounding rect for the rest of the layout.
-	CGFloat margin = (titleSize.height > 0) ? AHAlertViewTitleLabelBottomMargin : 0;
+	CGFloat margin = (titleSize.height > 0) ? self.titleLabelBottomMargin : 0;
 	boundingRect.origin.y = boundingRect.origin.y + titleSize.height + margin;
 	return boundingRect;
 }
@@ -725,7 +734,7 @@ typedef void (^AHAnimationBlock)();
 										 boundingRect.size.width, messageSize.height);
 
 	// Adjust and return the bounding rect for the rest of the layout.
-	CGFloat margin = (messageSize.height > 0) ? AHAlertViewMessageLabelBottomMargin : 0;
+	CGFloat margin = (messageSize.height > 0) ? self.messageLabelBottomMargin : 0;
 	boundingRect.origin.y = boundingRect.origin.y + messageSize.height + margin;
 	return boundingRect;
 }
@@ -790,16 +799,16 @@ typedef void (^AHAnimationBlock)();
 	for(UITextField *textField in textFields)
 	{
 		CGRect fieldFrame = CGRectMake(boundingRect.origin.x, boundingRect.origin.y,
-									   boundingRect.size.width, AHAlertViewDefaultTextFieldHeight);
+									   boundingRect.size.width, self.textFieldHeight);
 		textField.frame = fieldFrame;
 
-		CGFloat leading = (textField != [textFields lastObject]) ? AHAlertViewTextFieldLeading : 0;
+		CGFloat leading = (textField != [textFields lastObject]) ? self.textFieldLeading : 0;
 		boundingRect.origin.y = CGRectGetMaxY(fieldFrame) + leading;
 	}
 
 	// Adjust and return the bounding rect for the rest of the layout.
 	if([textFields count] > 0)
-		boundingRect.origin.y += AHAlertViewTextFieldBottomMargin;
+		boundingRect.origin.y += self.textFieldBottomMargin;
 	return boundingRect;
 }
 
@@ -812,16 +821,16 @@ typedef void (^AHAnimationBlock)();
 	if([self shouldUseSingleRowButtonLayout])
 	{
 		CGFloat buttonOriginX = boundingRect.origin.x;
-		CGFloat buttonWidth = ((boundingRect.size.width + AHAlertViewButtonHorizontalSpacing) / [allButtons count]);
-		buttonWidth -= AHAlertViewButtonHorizontalSpacing;
+		CGFloat buttonWidth = ((boundingRect.size.width + self.buttonHorizontalSpacing) / [allButtons count]);
+		buttonWidth -= self.buttonHorizontalSpacing;
 
 		for(UIButton *button in allButtons)
 		{
 			CGRect buttonFrame = CGRectMake(buttonOriginX, boundingRect.origin.y,
-											buttonWidth, AHAlertViewDefaultButtonHeight);
+											buttonWidth, self.buttonHeight);
 			button.frame = buttonFrame;
 
-			buttonOriginX = CGRectGetMaxX(buttonFrame) + AHAlertViewButtonHorizontalSpacing;
+			buttonOriginX = CGRectGetMaxX(buttonFrame) + self.buttonHorizontalSpacing;
 		}
 		
 		boundingRect.origin.y = CGRectGetMaxY([[allButtons lastObject] frame]);
@@ -831,10 +840,10 @@ typedef void (^AHAnimationBlock)();
 		for(UIButton *button in allButtons)
 		{
 			CGRect buttonFrame = CGRectMake(boundingRect.origin.x, boundingRect.origin.y,
-											boundingRect.size.width, AHAlertViewDefaultButtonHeight);
+											boundingRect.size.width, self.buttonHeight);
 			button.frame = buttonFrame;
 
-			CGFloat margin = (button != [allButtons lastObject]) ? AHAlertViewButtonBottomMargin : 0;
+			CGFloat margin = (button != [allButtons lastObject]) ? self.buttonBottomMargin : 0;
 			boundingRect.origin.y = CGRectGetMaxY(buttonFrame) + margin;
 		}
 	}
